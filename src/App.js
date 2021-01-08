@@ -1,7 +1,11 @@
+import React from 'react'
+
 function App() {
   return (
-    <h1>test ok</h1>
-  );
+    <div>
+      <h1>Platform Builders</h1>
+    </div>
+  )
 }
 
-export default App;
+export default App
