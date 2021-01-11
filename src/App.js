@@ -1,7 +1,15 @@
+import React from 'react'
+import GlobalStyles from './styles/global'
+
+import Home from './pages/Home'
+
 function App() {
   return (
-    <h1>test ok</h1>
-  );
+    <div>
+      <GlobalStyles />
+      <Home />
+    </div>
+  )
 }
 
-export default App;
+export default App
