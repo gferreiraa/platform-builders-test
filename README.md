@@ -11,7 +11,7 @@ Nele o desafio era desenvolver uma aplicação para que a mesma possa verificar 
 
 A API utilizada neste teste foi a [Open Weather Map](http://api.openweathermap.org/)
 
-![PlatformBuilders - Test Front-End-Developer](https://user-images.githubusercontent.com/21059225/104145805-3643f800-53a7-11eb-9b1b-07402045e3f2.gif)
+![PlatformBuilders - Test Front-End-Developer (1)](https://user-images.githubusercontent.com/21059225/104211749-3843a080-5413-11eb-88d4-0c32d03bd789.gif)
 
 No processo foram abordados diversos conceitos que incluem ou não bibliotecas externas.
 
