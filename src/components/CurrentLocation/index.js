@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import * as S from './styled'
 import { RotateSpinner } from 'react-spinners-kit'
@@ -6,7 +6,7 @@ import { RotateSpinner } from 'react-spinners-kit'
 const CurrentLocation = () => {
   const [location, setLocation] = useState(false)
   const [weather, setWeather] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   let getWeather = async (lat, long) => {
     setLoading(true)
@@ -41,7 +41,7 @@ const CurrentLocation = () => {
     )
   } else if (weather == false) {
     return (
-      <Fragment>
+      <S.WrapperCurrentLocation>
         {' '}
         <RotateSpinner
           size={90}
@@ -49,7 +49,7 @@ const CurrentLocation = () => {
           loading={loading}
           className="Loading"
         />
-      </Fragment>
+      </S.WrapperCurrentLocation>
     )
   } else {
     return (
