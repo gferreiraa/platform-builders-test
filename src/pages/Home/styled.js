@@ -71,6 +71,8 @@ export const Card = styled.div`
   }
 `
 
+export const Loading = styled.div``
+
 export const TitleCard = styled.h2`
   font-size: 26px;
   font-weight: bold;

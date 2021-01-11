@@ -2,23 +2,41 @@ import React, { useState } from 'react'
 import * as S from './styled'
 import Logo from '../../assets/logo-bc.svg'
 import { fetchWeather } from '../../services/api'
+import { RotateSpinner } from 'react-spinners-kit'
+
+import CurrentLocation from '../../components/CurrentLocation'
 
 const Home = () => {
   const [query, setQuery] = useState('')
   const [weather, setWeather] = useState({})
+  const [loading, setLoading] = useState(false)
 
   const search = async (e) => {
-    if (e.key === 'Enter') {
-      const data = await fetchWeather(query)
-      setWeather(data)
+    try {
+      if (e.key === 'Enter') {
+        setLoading(true)
+        const data = await fetchWeather(query)
+        setLoading(false)
+        setWeather(data)
+        setQuery('')
+      }
+    } catch (err) {
+      setWeather(err)
       setQuery('')
+      setLoading(err)
     }
   }
 
   const getWeather = async (query) => {
-    const data = await fetchWeather(query)
-    setWeather(data)
-    setQuery('')
+    if (query !== '') {
+      setLoading(true)
+      const data = await fetchWeather(query)
+      setLoading(false)
+      setWeather(data)
+      setQuery('')
+    } else {
+      alert('Fill in the field to get started')
+    }
   }
 
   const now = new Date()
@@ -52,6 +70,14 @@ const Home = () => {
           <button onClick={() => getWeather(query)}>Search</button>
         </S.Form>
         <S.Card>
+          <S.Loading>
+            <RotateSpinner
+              size={90}
+              color="#ffc900"
+              loading={loading}
+              className="Loading"
+            />
+          </S.Loading>
           {weather.main && weather.main ? (
             <S.Container>
               <S.TitleCard>
@@ -78,7 +104,7 @@ const Home = () => {
               </S.WrapperTime>
             </S.Container>
           ) : (
-            'Nao tem nada aqui'
+            <CurrentLocation />
           )}
         </S.Card>
         <S.Footer>
