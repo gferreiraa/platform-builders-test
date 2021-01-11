@@ -4,6 +4,8 @@ import Logo from '../../assets/logo-bc.svg'
 import { fetchWeather } from '../../services/api'
 import { RotateSpinner } from 'react-spinners-kit'
 
+import { now, completeDate } from '../../utils/dateUtils'
+
 import CurrentLocation from '../../components/CurrentLocation'
 
 const Home = () => {
@@ -37,16 +39,6 @@ const Home = () => {
     } else {
       alert('Fill in the field to get started')
     }
-  }
-
-  const now = new Date()
-
-  const completeDate = () => {
-    const date =
-      now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate()
-    const time = now.getHours() + ':' + now.getMinutes()
-    const dateTime = date + ' | ' + time
-    return dateTime
   }
 
   return (

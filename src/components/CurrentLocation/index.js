@@ -6,7 +6,7 @@ import { RotateSpinner } from 'react-spinners-kit'
 const CurrentLocation = () => {
   const [location, setLocation] = useState(false)
   const [weather, setWeather] = useState(false)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   let getWeather = async (lat, long) => {
     setLoading(true)
