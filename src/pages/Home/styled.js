@@ -57,6 +57,10 @@ export const Card = styled.div`
   margin: 40px 0;
   flex: 1 0 auto;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   background: #ece9e6;
   background: -webkit-linear-gradient(
     to right,

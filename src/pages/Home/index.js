@@ -4,6 +4,8 @@ import Logo from '../../assets/logo-bc.svg'
 import { fetchWeather } from '../../services/api'
 import { RotateSpinner } from 'react-spinners-kit'
 
+import { now, completeDate } from '../../utils/dateUtils'
+
 import CurrentLocation from '../../components/CurrentLocation'
 
 const Home = () => {
@@ -39,16 +41,6 @@ const Home = () => {
     }
   }
 
-  const now = new Date()
-
-  const completeDate = () => {
-    const date =
-      now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate()
-    const time = now.getHours() + ':' + now.getMinutes()
-    const dateTime = date + ' | ' + time
-    return dateTime
-  }
-
   return (
     <React.Fragment>
       <S.Wrapper>
@@ -70,38 +62,43 @@ const Home = () => {
           <button onClick={() => getWeather(query)}>Search</button>
         </S.Form>
         <S.Card>
-          <S.Loading>
-            <RotateSpinner
-              size={90}
-              color="#ffc900"
-              loading={loading}
-              className="Loading"
-            />
-          </S.Loading>
           {weather.main && weather.main ? (
             <S.Container>
-              <S.TitleCard>
-                {weather.name}, <span>{weather.sys.country}</span>
-                <hr />
-              </S.TitleCard>
-              <S.MainInfo>
-                {Math.round(weather.main.temp)}
-                <span>&deg;C</span>
-                <S.SecondaryInfo>
-                  {weather.weather[0].description}
-                </S.SecondaryInfo>
-              </S.MainInfo>
-              <S.ExtraInfo>
-                <p>
-                  Min: <span>{weather.main.temp_min}&deg;C</span>
-                </p>
-                <p>
-                  Max: <span>{weather.main.temp_max}&deg;C</span>
-                </p>
-              </S.ExtraInfo>
-              <S.WrapperTime>
-                <S.Day>{completeDate()}</S.Day>
-              </S.WrapperTime>
+              {!loading ? (
+                <>
+                  <S.TitleCard>
+                    {weather.name}, <span>{weather.sys.country}</span>
+                    <hr />
+                  </S.TitleCard>
+                  <S.MainInfo>
+                    {Math.round(weather.main.temp)}
+                    <span>&deg;C</span>
+                    <S.SecondaryInfo>
+                      {weather.weather[0].description}
+                    </S.SecondaryInfo>
+                  </S.MainInfo>
+                  <S.ExtraInfo>
+                    <p>
+                      Min: <span>{weather.main.temp_min}&deg;C</span>
+                    </p>
+                    <p>
+                      Max: <span>{weather.main.temp_max}&deg;C</span>
+                    </p>
+                  </S.ExtraInfo>
+                  <S.WrapperTime>
+                    <S.Day>{completeDate()}</S.Day>
+                  </S.WrapperTime>
+                </>
+              ) : (
+                <S.Loading>
+                  <RotateSpinner
+                    size={90}
+                    color="#ffc900"
+                    loading={loading}
+                    className="Loading"
+                  />
+                </S.Loading>
+              )}
             </S.Container>
           ) : (
             <CurrentLocation />
